@@ -18,6 +18,7 @@
 package org.pieles.scrumboard.main;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.xml.bind.JAXBException;
 import org.pieles.scrumboard.model.projects.Component;
 import org.pieles.scrumboard.model.projects.Epic;
@@ -30,25 +31,60 @@ import org.pieles.scrumboard.model.projects.UserStory;
  * @author jpi
  */
 public class Controller {
-    
+
+    public static void mainMenu() throws JAXBException {
+        Scanner scanner = new Scanner(System.in);
+        printList("show projects", "save and quit");
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                projectMenu();
+            case 2:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void printSplitter() {
+        System.out.println("-------------------------------------------------------------------------------");
+    }
+
+    private static void projectMenu() throws JAXBException {
+        ArrayList<Project> projects = Data.getProjects();
+        for (int i = 0; i < projects.size(); i++) {
+            System.out.println((i + 1) + ". " + projects.get(i).getName());
+        }
+        printSplitter();
+        printList("add project", "remove project", "edit project");
+    }
+
+    private static void printList(String... items) {
+        int count = 1;
+        for (String item : items) {
+            System.out.printf(count + ". " + item + "\n");
+            count++;
+        }
+    }
+
     public static void showProjects() throws JAXBException {
         ArrayList<Project> projects = Data.getProjects();
-        
-        for(Project pj : projects) {
+
+        for (Project pj : projects) {
             System.out.println(pj);
-            for(Component com : pj.getComponents()) {
-                System.out.println("    "+com);
-                for(Epic ep : com.getEpics()) {
-                    System.out.println("        "+ep);
-                    for(UseCase uc : ep.getUseCases()) {
-                        System.out.println("            "+uc);
-                        for(UserStory us : uc.getUserStories()) {
-                            System.out.println("                "+us);
+            for (Component com : pj.getComponents()) {
+                System.out.println("    " + com);
+                for (Epic ep : com.getEpics()) {
+                    System.out.println("        " + ep);
+                    for (UseCase uc : ep.getUseCases()) {
+                        System.out.println("            " + uc);
+                        for (UserStory us : uc.getUserStories()) {
+                            System.out.println("                " + us);
                         }
                     }
                 }
             }
         }
     }
-    
+
 }

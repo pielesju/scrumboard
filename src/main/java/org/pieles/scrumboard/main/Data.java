@@ -116,7 +116,7 @@ public class Data {
         //Marshaller m = context.createMarshaller();
         //m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         //m.marshal(pjs, System.out);
-        File file = new File("/home/jpi/projects.xml");
+        File file = new File("/home/jpieles/Development/projects.xml");
         JAXB.marshal(pjs, file);
         
         projects.add(proj1);

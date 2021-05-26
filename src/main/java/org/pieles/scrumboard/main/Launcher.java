@@ -26,12 +26,12 @@ import javax.xml.bind.JAXBException;
 public class Launcher {
     
     public static void main(String[] args) throws JAXBException {
-        System.out.printf("%34s", "SCRUM BOARD\n");
-        System.out.printf("%34s", "pieles.org\n");
-        System.out.printf("%34s", "version 1.0\n");
-        System.out.printf("--------------------------------------------------------------------------------\n\n");
+        System.out.printf("  %s", "SCRUM BOARD\n");
+        System.out.printf("  %s", "pieles.org\n");
+        System.out.printf("  %s", "version 1.0\n");
+        System.out.printf("-------------------------------------------------------------------------------\n\n");
        
-        Controller.showProjects();
+        Controller.mainMenu();
     }
     
 }
